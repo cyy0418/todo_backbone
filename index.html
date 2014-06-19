@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="js/libs/jquery-min.js"></script>
+    <script src="js/libs/underscore-min.js"></script>
+    <script src="js/libs/backbone.js"></script>
+    <script src="js/libs/backbone.localStorage.js"></script>
+    <style>
+        #todo-list li .editinput {
+            display: none;
+        }
+        #todo-list .editing .editinput{
+            display:inline;
+        }
+        #todo-list .editing .title{
+            display:none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="todoapp">
+        <header>
+            <h1>Todos</h1>
+            <input type="text" id="new-todo" placeholder="请在此输入...">
+        </header>
+        <section id="main">
+               <div class="row">
+                   <div class="span1">
+                       <input type="checkbox" id="toggle-all">
+                   </div>
+                   <div class="span11">
+                        <label for="toggle-all">全部完成</label>
+                   </div>
+               </div>
+            <ul id="todo-list" class="unstyled"></ul>
+        </section>
+        <footer>
+           
+        </footer>
+        <div id="instructions">双击修改</div>
+    </div>
+    
+ <script id="itemTemplate" type="text/template">
+    <div class="view">
+        <div class="row">
+            <div class="span1">
+                <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>/>
+            </div>
+            <div class="span4 title"><%- title %></div>
+            <div class="span4 editinput"><input class="edit" type="text" value="<%- title %>" /></div>
+        <div class="span1"><a href="javascript:;" class="destroy ">删除</a></div>
+        </div>
+      </div>
+     
+  </script>
+<script id="statsTemplate" type="text/template">
+    <div class="row">
+       <div class="span2"> 
+        <div class="todo-count"><b><%= remaining %></b > <%= remaining == 1 ? 'item' : 'items' %> left           </div>
+        </div>
+        <div class="span3"><% if (done) {%>
+         <a id = "clear-completed" href="javascript:;"> Clear <%= done %> completed <%= done == 1 ? 'item' : 'items' %> </a>
+         <% } %>
+        </div>
+   </div>
+      
+    
+   
+ </script>
+     <script src="js/models/models.js"></script>
+    <script src="js/collection/todos.js"></script>
+    <script src="js/views/view.js"></script>
+</body>
+
+</html>
